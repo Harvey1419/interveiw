@@ -2,13 +2,16 @@ package com.example.demo.Service;
 
 import com.example.demo.model.UsuarioModelo;
 import lombok.Data;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 
+
 @Service
 @Data
 public class ServiceUsuario {
+
 
     ArrayList<UsuarioModelo> listaUsuarios = new ArrayList<UsuarioModelo>();
 
@@ -21,6 +24,17 @@ public class ServiceUsuario {
 
     public ArrayList<UsuarioModelo> getUsuario(){
         return listaUsuarios;
+    }
+    public UsuarioModelo getUserById(String name){
+        UsuarioModelo user = new UsuarioModelo();
+        for (UsuarioModelo usuario: listaUsuarios) {
+            if(usuario.nombre.equals(name) ){
+                user = usuario;
+            }else{
+                continue;
+            }
+        }
+        return user;
     }
 
 }
